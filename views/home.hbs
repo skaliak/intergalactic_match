@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="stylesheets/style.css" rel="stylesheet">
+</head>
+<body>
+<!--login modal-->
+<div class="panel panel-default col-md-4 col-md-offset-2 roundy">
+    <h1>Welcome, {{user.firstname}} {{user.lastname}}!</h1>
+    <p>{{user._id}}</p>
+
+    <a href="/editprofile">Edit Profile</a>
+</div>
+<!-- script references -->
+<script src="javascripts/jquery.min.js"></script>
+<script src="javascripts/bootstrap.min.js"></script>
+<script src="javascripts/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Edit Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="stylesheets/style.css" rel="stylesheet">
+</head>
+<body>
+<!--login modal-->
+<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h1 class="text-center">Edit Your Profile</h1>
+            </div>
+            <div class="modal-body">
+                <form action="/postprofile" method="post" class="form col-md-12 center-block" style="float: inherit">
+                    <!--<input type="hidden" name="userid" value="{{user._id}}">-->
+                    <div class="form-group">
+                        <label>Home Planet</label>
+                        <input name="planet" type="text" class="form-control" value="{{planet}}">
+                    </div>
+                    <div class="form-group">
+                        <label>age</label>
+                        <input name="age" type="number" class="form-control" value="{{age}}">
+                    </div>
+                    <div class="form-group">
+                        <label>seeking<br>
+                            <select class="form-control" name="seeking">
+                                <option>Neptunian</option>
+                                <option>Earthling</option>
+                                <option>Android</option>
+                                <option>Cyborg</option>
+                                <option>Kryptonian</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>For</label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="seekingfor" id="optionsRadios1" value="Planetary Domination">
+                                Planetary Domination
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="seekingfor" id="optionsRadios2" value="Spawning" checked>
+                                Brood Spawning
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="seekingfor" id="optionsRadios3" value="Fun">
+                                Just Fun!
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>interests</label>
+                        <input style="height: 200px" name="interests" type="text" class="form-control input-lg" value="{{interests}}">
+                    </div>
+                    <div class="form-group">
+                        <label>About Me</label>
+                        <input style="height: 200px" name="about" type="text" class="form-control input-lg" value="{{about}}">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-12">
+                    <button type="submit" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- script references -->
+<script src="javascripts/jquery.min.js"></script>
+<script src="javascripts/bootstrap.min.js"></script>
+<script src="javascripts/scripts.js"></script>
+</body>
+</html>
