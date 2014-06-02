@@ -70,7 +70,19 @@ router.post('/login',
         // If this function gets called, authentication was successful.
         // `req.user` contains the authenticated user.
         res.redirect('/home');
-    });
+    },
+    function(err, res){
+        console.log(err);
+        res.send('you dun goofed!');
+    }
+);
+
+//router.post('/login',
+//    passport.authenticate('local',
+//        { successRedirect: '/home',
+//        failureRedirect: '/login',
+//        failureFlash: true })
+//);
 
 router.post('/register', function(req, res) {
     User.register(
@@ -84,7 +96,8 @@ router.post('/register', function(req, res) {
         req.body.password,
         function(err, user) {
         if (err) {
-            return res.render('register');
+            console.log(err);
+            return res.render('login', {tryregister: true, error: err});
         }
         res.redirect('/login');
 

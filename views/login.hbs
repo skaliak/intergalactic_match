@@ -9,8 +9,9 @@
     <link href="stylesheets/style.css" rel="stylesheet">
 </head>
 <body>
+
 <!--login modal-->
-<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="loginModal" class="modal fade in" data-show="true" data-backdrop="" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -26,8 +27,8 @@
                         <input name="password" type="password" class="form-control input-lg" placeholder="Password">
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">Sign In</button>
-                        <span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Sign In</button><br>
+                        <span class="pull-right">Need an account? <a onclick="modaltoggle()" href="#">Register</a></span>
                     </div>
                 </form>
             </div>
@@ -39,9 +40,65 @@
         </div>
     </div>
 </div>
+<!--register modal-->
+<div id="regModal" class="modal fade" data-backdrop="" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h1 class="text-center">Register</h1>
+            </div>
+            <div class="modal-body">
+                <form action="/register" method="post" class="form col-md-12 center-block" style="float: inherit">
+                    <div class="form-group">
+                        <input name="firstname" type="text" class="form-control input-lg" placeholder="First Name">
+                    </div>
+                    <div class="form-group">
+                        <input name="lastname" type="text" class="form-control input-lg" placeholder="Last Name">
+                    </div>
+                    <div class="form-group">
+                        <input name="username" type="text" class="form-control input-lg" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <input name="password" type="password" class="form-control input-lg" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Sign up</button><br>
+                        <span class="pull-right">already registered? <a onclick="modaltoggle()" href="#">login here</a></span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-12">
+                    <button type="submit" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="errPopup" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
+
 <!-- script references -->
 <script src="javascripts/jquery.min.js"></script>
 <script src="javascripts/bootstrap.min.js"></script>
-<script src="javascripts/scripts.js"></script>
+<script src="javascripts/loginregister.js"></script>
+<script>
+        $('#loginModal').modal('show');
+        {{#if error}}
+            $('#errPopup.modal-content').append('{{error.message}}');
+            $('#errPopup').modal('show');
+            //alert('{{error.message}}');
+        {{/if}}
+        {{#if tryregister}}
+            modaltoggle();
+        {{/if}}
+</script>
 </body>
 </html>
