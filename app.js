@@ -10,6 +10,7 @@ var passport = require('passport');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var api = require('./routes/api');
 
 var hbs = require('express-hbs');
 
@@ -44,7 +45,8 @@ app.use(passport.session());
 //app.use('public/stylesheets', express.static(path.join(__dirname, 'public/stylesheets')));
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/users', users);   //probably don't need this...
+app.use('/api', api);       //rest stuff
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

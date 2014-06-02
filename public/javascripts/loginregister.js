@@ -1,3 +1,7 @@
+$('#regform').validate();
+
+$('#loginModal').modal('show');
+
 function modaltoggle() {
     var r = $('#regModal');
     var l = $('#loginModal');

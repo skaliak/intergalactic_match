@@ -11,6 +11,22 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/ahome', function(req, res) {
+    if(req.user != null) {
+        //find the user's profile
+        Profile.findOne({ userid: new ObjectId(req.user._id) }, function(err, prof) {
+            if (err) return console.error(err);
+            console.log('found profile?');
+
+            res.sendfile('./views/angview.html');
+        });
+
+    } else {
+        //user isn't logged in
+        res.redirect('/login');
+    }
+});
+
 router.get('/home', function(req, res) {
     if(req.user != null) {
         //find the user's profile
@@ -64,6 +80,7 @@ router.get('/editprofile', function(req, res) {
 });
 
 //passport login
+
 router.post('/login',
     passport.authenticate('local'),
     function(req, res) {

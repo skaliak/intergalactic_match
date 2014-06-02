@@ -49,18 +49,18 @@
                 <h1 class="text-center">Register</h1>
             </div>
             <div class="modal-body">
-                <form action="/register" method="post" class="form col-md-12 center-block" style="float: inherit">
+                <form id="regform" action="/register" method="post" class="form col-md-12 center-block" style="float: inherit">
                     <div class="form-group">
-                        <input name="firstname" type="text" class="form-control input-lg" placeholder="First Name">
+                        <input name="firstname" type="text" class="form-control input-lg" placeholder="First Name" required>
                     </div>
                     <div class="form-group">
-                        <input name="lastname" type="text" class="form-control input-lg" placeholder="Last Name">
+                        <input name="lastname" type="text" class="form-control input-lg" placeholder="Last Name" required>
                     </div>
                     <div class="form-group">
-                        <input name="username" type="text" class="form-control input-lg" placeholder="Username">
+                        <input name="username" type="text" minlength="2" class="form-control input-lg" placeholder="Username" required>
                     </div>
                     <div class="form-group">
-                        <input name="password" type="password" class="form-control input-lg" placeholder="Password">
+                        <input name="password" type="password" minlength="7" class="form-control input-lg" placeholder="Password" required>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-lg btn-block">Sign up</button><br>
@@ -87,14 +87,14 @@
 
 <!-- script references -->
 <script src="javascripts/jquery.min.js"></script>
+<script src="javascripts/jquery.validate.min.js"></script>
 <script src="javascripts/bootstrap.min.js"></script>
 <script src="javascripts/loginregister.js"></script>
 <script>
-        $('#loginModal').modal('show');
         {{#if error}}
-            $('#errPopup.modal-content').append('{{error.message}}');
-            $('#errPopup').modal('show');
-            //alert('{{error.message}}');
+            //$('#errPopup.modal-content').append('{{error.message}}');
+            //$('#errPopup').modal('show');
+            alert('{{error.message}}');
         {{/if}}
         {{#if tryregister}}
             modaltoggle();

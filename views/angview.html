@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="imatch">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Intergalactic Match</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+        <link href="stylesheets/style.css" rel="stylesheet">
+        <script src="javascripts/jquery.min.js"></script>
+        <script src="javascripts/angular.js"></script>
+        <script src="javascripts/acore.js"></script>
+    </head>
+    <body ng-controller="theController">
+
+        <div class="container">
+            <div class="panel panel-default col-md-6 col-md-offset-2 roundy">
+                <h1>Angular??</h1>
+
+                <!--show profiles here-->
+                <div ng-repeat="prof in profiles">
+                    <div class="panel panel-default">
+                        <ul>
+                            <li>Age: {{prof.age}}</li>
+                            <li>From: {{prof.planet}}</li>
+                            <li>Seeking a {{prof.seeking}} for {{prof.seekingfor}}</li>
+                            <li>About me: {{prof.about}}</li>
+                            <li>Interests: {{prof.interests}}</li>
+                        </ul>
+                    </div>
+                </div><!--ng-repeat-->
+
+            </div>
+        </div>
+
+    </body>
+</html>
