@@ -9,7 +9,8 @@ var Profile = new Schema({
     seekingfor: String,
     interests : String,
     about: String,
-    hasimage: Boolean
+    hasimage: Boolean,
+    headline: String
 });
 
 

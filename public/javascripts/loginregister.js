@@ -28,7 +28,7 @@ function tryLogin(){
             //data += "<br>The error message was: " + error;
 
             //show toast message
-            toastr.error(error);
+            toastr.error('bad username or password');
         });
 }
 

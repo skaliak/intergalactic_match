@@ -73,4 +73,10 @@ function theController($scope, $http){
 
     };
 
+    $scope.showProfModal = function(p) {
+        $scope.profView = p;
+        console.log(p);
+        $('#profModal').modal('show');
+    };
+
 }

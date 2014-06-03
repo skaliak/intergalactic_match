@@ -10,7 +10,10 @@ var fs = require('fs');
 //routes go here
 router.get('/profiles', function(req, res) {
     if(req.user != null) {
-        Profile.find(function(err, profs) {
+
+        //need to exclude the user's profile
+        Profile.where('userid').ne(req.user._id).exec(function(err, profs) {
+        //Profile.find(!{ userid: req.user._id },function(err, profs) {
             if (err) return console.error(err);
 
             res.send(profs);
