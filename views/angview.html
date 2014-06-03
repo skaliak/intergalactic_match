@@ -13,23 +13,128 @@
     </head>
     <body ng-controller="theController">
 
+    <!--navbar here?-->
+
+
         <div class="container">
-            <div class="panel panel-default col-md-6 col-md-offset-2 roundy">
-                <h1>Angular??</h1>
-
-                <!--show profiles here-->
-                <div ng-repeat="prof in profiles">
-                    <div class="panel panel-default">
-                        <ul>
-                            <li>Age: {{prof.age}}</li>
-                            <li>From: {{prof.planet}}</li>
-                            <li>Seeking a {{prof.seeking}} for {{prof.seekingfor}}</li>
-                            <li>About me: {{prof.about}}</li>
-                            <li>Interests: {{prof.interests}}</li>
-                        </ul>
+            <div class="center-block text-center logo">
+                <h1>Intergalactic Match</h1>
+                <p class="lead">There's no such thing as a Long Distance Relationship
+                 to those who have Warp Drive Technology</p>
+            </div>
+            <div class="row">
+                <div class="panel panel-default col-md-5 roundy">
+                    <div>
+                        <h2>Your Profile</h2>
+                        <img style="margin-bottom: 20px;" align="left" class="img-circle" src="http://hhhhold.com/120">
+                        <div class="panel panel-default rhole pull-right" style="max-width: 300px">
+                            <ul>
+                            <li>Age: {{myprof.age}}</li>
+                            <li>From: {{myprof.planet}}</li>
+                            <li>Seeking a {{myprof.seeking}} for {{myprof.seekingfor}}</li>
+                            <li>About me: {{myprof.about}}</li>
+                            <li>Interests: {{myprof.interests}}</li>
+                            </ul>
+                        </div>
+                        <a href ng-click="uploadingImage = !uploadingImage"
+                           class="col-md-4 btn btn-primary btn-lg">Upload Image</a>
+                        <a href ng-click="editingProfile = !editingProfile"
+                           class="col-md-offset-4 col-md-4 btn btn-primary btn-lg">Edit Profile</a>
                     </div>
-                </div><!--ng-repeat-->
 
+                    <!--file upload form, normally hidden-->
+                    <div>
+                        <form ng-show="uploadingImage" ng-model="imgForm" class="form col-md-12 center-block" style="float: inherit">
+
+                            <input id="fb" name="inboundFile" type="file" style="visibility: hidden;">
+
+                            <div class="form-group">
+                                <button type="button" onclick="$('#fb').click();" class="btn btn-primary btn-lg btn-block">Choose Image</button>
+                            </div>
+                            <div class="form-group">
+                                <button type="button" ng-click="uploadImage()" class="btn btn-primary btn-lg btn-block">Upload</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!--profile edit form, normally hidden-->
+                    <div>
+                        <form ng-show="editingProfile" class="form col-md-12 center-block" style="float: inherit">
+                            <!--<input type="hidden" name="userid" value="{{user._id}}">-->
+                            <div class="form-group">
+                                <label>Home Planet</label>
+                                <input name="planet" type="text" class="form-control" ng-model="myprof.planet">
+                            </div>
+                            <div class="form-group">
+                                <label>age</label>
+                                <input name="age" type="number" class="form-control" ng-model="myprof.age">
+                            </div>
+                            <div class="form-group">
+                                <label>seeking<br>
+                                    <select class="form-control" name="seeking" ng-model="myprof.seeking">
+                                        <option>Neptunian</option>
+                                        <option>Earthling</option>
+                                        <option>Android</option>
+                                        <option>Cyborg</option>
+                                        <option>Kryptonian</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label>For</label>
+                                <div class="radio">
+                                    <label>
+                                        <input ng-model="myprof.seekingfor" type="radio" name="seekingfor" id="optionsRadios1" value="Planetary Domination">
+                                        Planetary Domination
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input ng-model="myprof.seekingfor" type="radio" name="seekingfor" id="optionsRadios2" value="Spawning" checked>
+                                        Brood Spawning
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input ng-model="myprof.seekingfor" type="radio" name="seekingfor" id="optionsRadios3" value="Fun">
+                                        Just Fun!
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>interests</label>
+                                <input ng-model="myprof.interests" style="height: 200px" name="interests" type="text" class="form-control input-lg">
+                            </div>
+                            <div class="form-group">
+                                <label>About Me</label>
+                                <input ng-model="myprof.about" style="height: 200px" name="about" type="text" class="form-control input-lg">
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary btn-lg btn-block">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!--show other profiles here-->
+                <div class="panel panel-default col-md-6 col-md-offset-1 roundy">
+                    <h2>Matches</h2>
+
+
+                    <div ng-repeat="prof in profiles" class="row">
+                        <img align="left" class="img-circle col-md-4" src="http://hhhhold.com/120?{{prof.age}}">
+                        <div class="panel panel-default rhole col-md-8" style="min-height: 120px;">
+                            <ul>
+                                <li>Age: {{prof.age}}</li>
+                                <li>From: {{prof.planet}}</li>
+                                <li>Seeking a {{prof.seeking}} for {{prof.seekingfor}}</li>
+                                <li>About me: {{prof.about}}</li>
+                                <li>Interests: {{prof.interests}}</li>
+                            </ul>
+                        </div>
+                    </div><!--ng-repeat-->
+
+                </div>
             </div>
         </div>
 

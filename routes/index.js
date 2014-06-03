@@ -5,6 +5,7 @@ var passport = require('../passport_conf.js');
 var User = require('../models/User.js');
 var Profile = require('../models/Profile.js');
 var ObjectId = require('mongoose').Types.ObjectId;
+var fs = require('fs');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -16,7 +17,7 @@ router.get('/ahome', function(req, res) {
         //find the user's profile
         Profile.findOne({ userid: new ObjectId(req.user._id) }, function(err, prof) {
             if (err) return console.error(err);
-            console.log('found profile?');
+            //console.log('found profile?');
 
             res.sendfile('./views/angview.html');
         });
@@ -49,6 +50,10 @@ router.get('/login', function(req, res) {
 
 router.get('/register', function(req, res) {
     res.render('register');
+});
+
+router.get('/upload', function(req, res) {
+    res.render('iupload');
 });
 
 router.get('/profiles', function(req, res) {
@@ -86,7 +91,7 @@ router.post('/login',
     function(req, res) {
         // If this function gets called, authentication was successful.
         // `req.user` contains the authenticated user.
-        res.redirect('/home');
+        res.redirect('/ahome');
     },
     function(err, res){
         console.log(err);
@@ -146,14 +151,21 @@ router.post('/postprofile', function(req, res) {
 
 router.post('/postimage', function(req, res) {
     if(req.user != null) {
+
+        //console.log(req);
         var file = req.files.uploadFile;
-        if (file != null && file.type.match(/image/)) {
+
+        if (file != null && file.mimetype.match(/image/)) {
             var ext = file.path.split(".")[1];
-            var newPath = __dirname + "/public/images/" + req.user._id + "." + ext;
-            fs.renameSync(file.path, newPath);
+            var newPath = __dirname + '\\..\\public\\images\\' + req.user._id + '.' + ext;
+            console.log(newPath);
+            console.log(file.path);
+            fs.renameSync(__dirname + '\\..\\' + file.path, newPath);
+            res.send('success!');
         } else {
             res.send('upload error');
         }
+
     } else {
         res.send('error, not logged in');
     }

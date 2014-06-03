@@ -1,6 +1,6 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('static-favicon');
+//var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -13,6 +13,8 @@ var users = require('./routes/users');
 var api = require('./routes/api');
 
 var hbs = require('express-hbs');
+
+var multer = require('multer');
 
 var app = express();
 
@@ -27,7 +29,7 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 //app.set('view engine', 'hjs');
 
-app.use(favicon());
+//app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
@@ -39,6 +41,8 @@ app.use(session({ secret: '0xB16B00B5' }));
 //init passport
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(multer({dest: './public/images/'}));
 
 //app.use(express.static(path.join(__dirname, 'public')));
 //app.use('public/javascripts', express.static(path.join(__dirname, 'public/javascripts')));

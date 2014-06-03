@@ -1,6 +1,8 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: url(http://upload.wikimedia.org/wikipedia/commons/a/a2/CW_Leonis_big_melt.jpg) no-repeat center center fixed;
+  background-size: cover;
 }
 
 a {
@@ -9,7 +11,7 @@ a {
 
 .roundy {
     padding: 25px;
-    border-radius: 10%;
+    border-radius: 50px;
     background-color: aquamarine;
     box-shadow: 1em .75em 0px 1em cornflowerblue;
 }
@@ -19,4 +21,8 @@ a {
     border-radius: 15px;
     box-shadow: inset .5em .5em 10px;
     padding: 15px;
+}
+
+.logo {
+    color: lightblue;
 }
