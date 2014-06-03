@@ -36,11 +36,16 @@ router.get('/myprofile', function(req, res) {
     }
 });
 
-router.get('/myprofile', function(req, res) {
+router.get('/me', function(req, res) {
     if(req.user != null) {
-        //check for existing profile...
 
-        res.send({ id: req.user._id, firstname: req.user.firstname, lastname: req.user.lastname });
+        res.send({
+            id: req.user._id,
+            firstname: req.user.firstname,
+            lastname: req.user.lastname,
+            joindate: req.user.joindate,
+            hasimage: req.user.hasimage
+        });
 
     } else {
         res.send({error: 'not logged in'});
@@ -76,6 +81,21 @@ router.post('/postimage', function(req, res) {
             console.log(newPath);
             //console.log(file.path);
             fs.renameSync(__dirname + '\\..\\' + file.path, newPath);
+
+            //change user object or profile object to indicate that there's an image
+            Profile.findOne({ userid: new ObjectId(req.user._id) }, function(err, prof) {
+                if (err) return console.error(err);
+                console.log('updating profile');
+
+                prof.hasimage = true;
+
+                prof.save(function (err, prof) {
+                    if (err) return console.error(err);
+                    console.log('profile saved');
+                });
+
+            });
+
             res.send('success!');
         } else {
             res.send('upload error');

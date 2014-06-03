@@ -8,7 +8,7 @@ function theController($scope, $http){
     $http.get('/api/profiles')
         .success(function(data) {
             $scope.profiles = data;
-            console.log(data);
+            console.log('loaded profiles');
         })
         .error(function(data) {
             console.log('Error: ' + data);
@@ -25,13 +25,23 @@ function theController($scope, $http){
             console.log('Error: ' + data);
         });
 
+    $http.get('/api/me')
+        .success(function(data) {
+            $scope.me = data;
+            console.log(data);
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+
     $scope.updateProfile = function() {
         $http.post('/api/updateProfile', $scope.myprof)
             .success(function(data) {
-                //hide the edit form?
-
+                //hide the edit form
+                $scope.editingProfile = false;
+                $scope.myprof.hasimage = true;
                 //$scope.formData = {}; // clear the form so our user is ready to enter another
-                //$scope.myprof = data;
+
                 console.log(data);
             })
             .error(function(data) {

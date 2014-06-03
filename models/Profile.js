@@ -8,7 +8,8 @@ var Profile = new Schema({
     age : Number,
     seekingfor: String,
     interests : String,
-    about: String
+    about: String,
+    hasimage: Boolean
 });
 
 

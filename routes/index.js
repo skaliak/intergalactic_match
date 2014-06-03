@@ -93,12 +93,13 @@ router.post('/login',
         // `req.user` contains the authenticated user.
         res.redirect('/ahome');
     },
-    function(err, res){
+    function(err, res){     //take this part out?
         console.log(err);
         res.send('you dun goofed!');
     }
 );
 
+//if flash messages work, use this:
 //router.post('/login',
 //    passport.authenticate('local',
 //        { successRedirect: '/home',
@@ -119,10 +120,12 @@ router.post('/register', function(req, res) {
         function(err, user) {
         if (err) {
             console.log(err);
-            return res.render('login', {tryregister: true, error: err});
+            //return res.render('login', {tryregister: true, error: err});
+            return res.send({success: false, error: err});
         }
-        res.redirect('/login');
-
+        //res.redirect('/login');
+        console.log(user);
+        res.send({success: true});
     });
 });
 

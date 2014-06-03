@@ -6,6 +6,7 @@
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="stylesheets/toastr.css" rel="stylesheet"/>
     <link href="stylesheets/style.css" rel="stylesheet">
 </head>
 <body>
@@ -13,13 +14,12 @@
 <!--login modal-->
 <div id="loginModal" class="modal fade in" data-show="true" data-backdrop="" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content roundy">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h1 class="text-center">Login</h1>
             </div>
             <div class="modal-body">
-                <form action="/login" method="post" class="form col-md-12 center-block" style="float: inherit">
+                <form id="loginForm" method="post" class="form col-md-12 center-block" style="float: inherit">
                     <div class="form-group">
                         <input name="username" type="text" class="form-control input-lg" placeholder="Username">
                     </div>
@@ -27,70 +27,70 @@
                         <input name="password" type="password" class="form-control input-lg" placeholder="Password">
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">Sign In</button><br>
+                        <button onclick="tryLogin()" type="button" class="btn btn-primary btn-lg btn-block">Sign In</button><br>
                         <span class="pull-right">Need an account? <a onclick="modaltoggle()" href="#">Register</a></span>
                     </div>
                 </form>
             </div>
+            <!--
             <div class="modal-footer">
                 <div class="col-md-12">
                     <button type="submit" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
                 </div>
             </div>
+            -->
         </div>
     </div>
 </div>
 <!--register modal-->
 <div id="regModal" class="modal fade" data-backdrop="" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content roundy">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h1 class="text-center">Register</h1>
             </div>
             <div class="modal-body">
-                <form id="regform" action="/register" method="post" class="form col-md-12 center-block" style="float: inherit">
+                <form id="regForm" method="post" class="form col-md-12 center-block" style="float: inherit">
                     <div class="form-group">
-                        <input name="firstname" type="text" class="form-control input-lg" placeholder="First Name" required>
+                        <input id="fname" name="firstname" type="text" class="form-control input-lg" placeholder="First Name" required>
                     </div>
                     <div class="form-group">
-                        <input name="lastname" type="text" class="form-control input-lg" placeholder="Last Name" required>
+                        <input id="lname" name="lastname" type="text" class="form-control input-lg" placeholder="Last Name" required>
                     </div>
                     <div class="form-group">
-                        <input name="username" type="text" minlength="2" class="form-control input-lg" placeholder="Username" required>
+                        <input id="uname" name="username" type="text" minlength="2" class="form-control input-lg" placeholder="Username" required>
                     </div>
                     <div class="form-group">
-                        <input name="password" type="password" minlength="7" class="form-control input-lg" placeholder="Password" required>
+                        <input id="pw" name="password" type="password" minlength="7" class="form-control input-lg" placeholder="Password" required>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">Sign up</button><br>
+                        <button onclick="tryRegister()" type="button" class="btn btn-primary btn-lg btn-block">Sign up</button><br>
                         <span class="pull-right">already registered? <a onclick="modaltoggle()" href="#">login here</a></span>
                     </div>
                 </form>
             </div>
+            <!--
             <div class="modal-footer">
                 <div class="col-md-12">
                     <button type="submit" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
                 </div>
             </div>
+            -->
         </div>
     </div>
 </div>
 
-<div id="errPopup" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-
-        </div>
-    </div>
-</div>
 
 <!-- script references -->
-<script src="javascripts/jquery.min.js"></script>
-<script src="javascripts/jquery.validate.min.js"></script>
+<script src="javascripts/jquery.js"></script>
+<script src="javascripts/jquery.validate.js"></script>
 <script src="javascripts/bootstrap.min.js"></script>
+<script src="javascripts/toastr.js"></script>
 <script src="javascripts/loginregister.js"></script>
 <script>
+
+        //probably don't need this
+
         {{#if error}}
             //$('#errPopup.modal-content').append('{{error.message}}');
             //$('#errPopup').modal('show');

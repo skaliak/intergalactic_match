@@ -26,7 +26,8 @@
                 <div class="panel panel-default col-md-5 roundy">
                     <div>
                         <h2>Your Profile</h2>
-                        <img style="margin-bottom: 20px;" align="left" class="img-circle" src="http://hhhhold.com/120">
+                        <img ng-show="!myprof.hasimage" style="margin-bottom: 20px;" align="left" class="img-circle" src="http://hhhhold.com/120">
+                        <img ng-show="myprof.hasimage" style="margin-bottom: 20px;" align="left" class="img-circle" width="120" src="/images/{{me.id}}.jpg">
                         <div class="panel panel-default rhole pull-right" style="max-width: 300px">
                             <ul>
                             <li>Age: {{myprof.age}}</li>
