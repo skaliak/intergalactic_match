@@ -15,8 +15,37 @@
     <body ng-controller="theController">
 
     <!--navbar here?-->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container" style="">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a ng-click="showAboutModal()" class="navbar-brand" href="#">About</a>
+            </div>
+            <div class="collapse navbar-collapse" style="">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#" class="" style="">Explore</a>
 
+                    </li>
+                    <li><a href="#" class="">Something</a>
 
+                    </li>
+                    <li><a href="#" class="">Nothing</a>
+
+                    </li>
+                    <li><a href="#" class="" contenteditable="false">Sign in</a>
+
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+
+        <!--logo/heading-->
         <div class="container">
             <div class="center-block text-center logo">
                 <h1>Intergalactic Match</h1>
@@ -24,6 +53,7 @@
                  to those who have Warp Drive Technology</p>
             </div>
             <div class="row">
+                <!--Left column  -->
                 <div class="panel panel-default col-md-5 roundy">
                     <div>
                         <h2>Your Profile</h2>
@@ -155,7 +185,13 @@
                                 <h3 class="text-center">{{profView.headline}}</h3>
                             </div>
                             <div class="modal-body">
-                                <p>{{profView.about}}</p>
+                                <table>
+                                    <tr><td>Age:       </td><td>{{profView.age}}        </td></tr>
+                                    <tr><td>From:      </td><td>{{profView.planet}}     </td></tr>
+                                    <tr><td>Seeking    </td><td>a {{profView.seeking}} for {{profView.seekingfor}}</td></tr>
+                                    <tr><td>About me:  </td><td>{{profView.about}}      </td></tr>
+                                    <tr><td>Interests: </td><td>{{profView.interests}}  </td></tr>
+                                </table>
                             </div>
 
                             <div class="modal-footer">
@@ -167,6 +203,35 @@
                         </div>
                     </div>
                 </div>
+
+                <!--about page modal-->
+                <div id="aboutModal" class="modal fade" data-backdrop="" tabindex="-1" role="dialog" aria-hidden="true" >
+                    <div class="modal-dialog">
+                        <div class="modal-content roundy">
+                            <div class="modal-header">
+                                <h3>About Intergalactic Match</h3>
+                            </div>
+                            <div class="modal-body">
+                                <ul>
+                                    <li>Programmed by Peter Lindberg</li>
+                                    <li>Backend runs on express for node.js</li>
+                                    <li>Database is MongoDB, connected via mongoose for node</li>
+                                    <li>login/register page uses vanilla jquery ajax</li>
+                                    <li>main page (this one) uses Angular.js</li>
+                                    <li>toastr.js for error/success messages</li>
+                                </ul>
+                            </div>
+
+                            <div class="modal-footer">
+                                <div class="col-md-2 col-md-offset-10">
+                                    <button type="submit" class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
         </div>

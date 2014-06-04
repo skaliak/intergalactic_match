@@ -64,7 +64,7 @@ function theController($scope, $http){
                     console.log(data);
 
                     //need to set "hasImage" in profile and then show image somehow?
-
+                    $scope.myprof.hasimage = true;
 
                 })
                 .error(function (data) {
@@ -77,6 +77,11 @@ function theController($scope, $http){
         $scope.profView = p;
         console.log(p);
         $('#profModal').modal('show');
+    };
+
+    $scope.showAboutModal = function() {
+
+        $('#aboutModal').modal('show');
     };
 
 }
