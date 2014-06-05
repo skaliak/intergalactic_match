@@ -1,3 +1,18 @@
+@font-face {
+    font-family: 'alien';
+    src: url('../fonts/fr-fal1.ttf');
+}
+
+@font-face {
+    font-family: 'hyperspace';
+    src: url('../fonts/Hyperspace.ttf');
+}
+
+@font-face {
+    font-family: 'robo';
+    src: url('../fonts/ROBO.TTF');
+}
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -8,6 +23,20 @@ body {
 a {
   color: #00B7FF;
 }
+
+h1 {
+    font-family: 'hyperspace', sans-serif;
+}
+
+.alienprofile {
+    font-family: 'alien', sans-serif;
+    font-size: larger;
+}
+
+.profile {
+    font-family: 'robo', sans-serif;
+}
+
 
 .roundy {
     padding: 25px;

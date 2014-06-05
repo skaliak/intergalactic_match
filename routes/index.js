@@ -7,9 +7,14 @@ var Profile = require('../models/Profile.js');
 var ObjectId = require('mongoose').Types.ObjectId;
 var fs = require('fs');
 
-/* GET home page. */
+
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
+  //res.render('index', { title: 'Express' });
+    if(req.user != null) {
+        res.redirect('/ahome');
+    } else {
+        res.redirect('/login');
+    }
 });
 
 router.get('/ahome', function(req, res) {
@@ -19,6 +24,7 @@ router.get('/ahome', function(req, res) {
             if (err) return console.error(err);
             //console.log('found profile?');
 
+            //static delivery
             res.sendfile('./views/angview.html');
         });
 
@@ -48,10 +54,12 @@ router.get('/login', function(req, res) {
     res.render('login');
 });
 
+//obsolete -- registration is handled by login page
 router.get('/register', function(req, res) {
     res.render('register');
 });
 
+//just for testing
 router.get('/upload', function(req, res) {
     res.render('iupload');
 });
@@ -101,7 +109,6 @@ router.post('/login',
     },
     function(err, res){     //take this part out?
         console.log(err);
-        res.send('you dun goofed!');
     }
 );
 
@@ -135,6 +142,7 @@ router.post('/register', function(req, res) {
     });
 });
 
+//not using this one
 router.post('/postprofile', function(req, res) {
     if(req.user != null) {
 
@@ -158,6 +166,7 @@ router.post('/postprofile', function(req, res) {
     }
 });
 
+//this doesn't resize the image...
 router.post('/postimage', function(req, res) {
     if(req.user != null) {
 

@@ -5,7 +5,7 @@ function theController($scope, $http){
     $scope.editingProfile = false;
     $scope.notN00b = true;
     toastr.options.positionClass = 'toast-top-left';
-    //toastr.info('this is a test toast message');
+    toastr.info('this is a test toast message');
 
     //get all the profiles
     $http.get('/api/profiles')

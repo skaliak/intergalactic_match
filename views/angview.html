@@ -61,10 +61,10 @@
                         <table><tr>
                             <td>
                                 <!--<img ng-show="!myprof.hasimage" style="margin-bottom: 20px;" align="left" class="img-circle" src="http://hhhhold.com/120">-->
-                                <img ng-show="!myprof.hasimage" style="margin-bottom: 20px;" align="left" class="img-circle" height="120" src="/images/Placeholder.svg">
+                                <img ng-show="!myprof.hasimage" style="margin-bottom: 20px;" align="left" class="img-circle" height="120" src="/images/placeholder.svg">
                                 <img ng-show="myprof.hasimage" style="margin-bottom: 20px;" align="left" class="img-circle" height="120" ng-src="/images/{{me.id}}.jpg">
                                 </td><td>
-                                <div class="panel panel-default rhole pull-right" style="max-width: 300px; min-width: 180px;">
+                                <div class="panel panel-default rhole pull-right profile" style="max-width: 300px; min-width: 180px;">
                                     <ul>
                                     <li>Age: {{myprof.age}}</li>
                                     <li>From: {{myprof.planet}}</li>
@@ -175,12 +175,13 @@
                     </div>
                     <div ng-repeat="prof in profiles | filter:profFilter" ng-click="showProfModal(prof)" class="row" style="cursor: pointer">
                         <img align="left" class="img-circle col-md-4" src="http://lorempixel.com/120/120/people?{{prof.age}}">
-                        <div class="panel panel-default rhole col-md-8" style="min-height: 120px;">
+                        <div class="panel panel-default rhole col-md-8 profile" style="min-height: 120px;">
                             <ul>
                                 <li>Age: {{prof.age}}</li>
                                 <li>From: {{prof.planet}}</li>
                                 <li>Seeking a {{prof.seeking}} for {{prof.seekingfor}}</li>
-                                <li>About me: {{prof.about}}</li>
+                                <li ng-class="{alienprofile : prof.planet == 'Mars' || prof.planet == 'Nebulon'}">
+                                    About me: {{prof.about}}</li>
                                 <li>Interests: {{prof.interests}}</li>
                             </ul>
                         </div>
