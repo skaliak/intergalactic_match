@@ -25,7 +25,7 @@ router.get('/ahome', function(req, res) {
             //console.log('found profile?');
 
             //static delivery
-            res.sendfile('./views/angview.html');
+            res.sendfile('views/angview.html');
         });
 
     } else {
