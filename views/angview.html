@@ -7,8 +7,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
         <link href="stylesheets/style.css" rel="stylesheet">
+        <link href="stylesheets/toastr.css" rel="stylesheet"/>
         <script src="javascripts/jquery.min.js"></script>
         <script src="javascripts/bootstrap.min.js"></script>
+        <script src="javascripts/toastr.js"></script>
         <script src="javascripts/angular.js"></script>
         <script src="javascripts/acore.js"></script>
     </head>
@@ -26,18 +28,17 @@
                 <a ng-click="showAboutModal()" class="navbar-brand" href="#">About</a>
             </div>
             <div class="collapse navbar-collapse" style="">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#" class="" style="">Explore</a>
-
-                    </li>
-                    <li><a href="#" class="">Something</a>
-
-                    </li>
-                    <li><a href="#" class="">Nothing</a>
-
-                    </li>
-                    <li><a href="#" class="" contenteditable="false">Sign in</a>
-
+                <ul class="nav navbar-nav navbar-right">
+                    <!--<li class="active"><a href="#" class="" style="">Explore</a></li>-->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, {{me.firstname}} {{me.lastname}}<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li></li>
+                            <li>{{me.username}}</li>
+                            <li>member since {{me.joindate | date: 'shortDate'}}</li>
+                            <li class="divider"></li>
+                            <li><a href="/logout">Log Out</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -55,19 +56,25 @@
             <div class="row">
                 <!--Left column  -->
                 <div class="panel panel-default col-md-5 roundy">
-                    <div>
+                    <div ng-show="notN00b">
                         <h2>Your Profile</h2>
-                        <img ng-show="!myprof.hasimage" style="margin-bottom: 20px;" align="left" class="img-circle" src="http://hhhhold.com/120">
-                        <img ng-show="myprof.hasimage" style="margin-bottom: 20px;" align="left" class="img-circle" width="120" src="/images/{{me.id}}.jpg">
-                        <div class="panel panel-default rhole pull-right" style="max-width: 300px">
-                            <ul>
-                            <li>Age: {{myprof.age}}</li>
-                            <li>From: {{myprof.planet}}</li>
-                            <li>Seeking a {{myprof.seeking}} for {{myprof.seekingfor}}</li>
-                            <li>About me: {{myprof.about}}</li>
-                            <li>Interests: {{myprof.interests}}</li>
-                            </ul>
-                        </div>
+                        <table><tr>
+                            <td>
+                                <!--<img ng-show="!myprof.hasimage" style="margin-bottom: 20px;" align="left" class="img-circle" src="http://hhhhold.com/120">-->
+                                <img ng-show="!myprof.hasimage" style="margin-bottom: 20px;" align="left" class="img-circle" height="120" src="/images/Placeholder.svg">
+                                <img ng-show="myprof.hasimage" style="margin-bottom: 20px;" align="left" class="img-circle" height="120" ng-src="/images/{{me.id}}.jpg">
+                                </td><td>
+                                <div class="panel panel-default rhole pull-right" style="max-width: 300px; min-width: 180px;">
+                                    <ul>
+                                    <li>Age: {{myprof.age}}</li>
+                                    <li>From: {{myprof.planet}}</li>
+                                    <li>Seeking a {{myprof.seeking}} for {{myprof.seekingfor}}</li>
+                                    <li>About me: {{myprof.about}}</li>
+                                    <li>Interests: {{myprof.interests}}</li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr></table>
                         <a href ng-click="uploadingImage = !uploadingImage"
                            class="col-md-4 btn btn-primary btn-lg">Upload Image</a>
                         <a href ng-click="editingProfile = !editingProfile"
@@ -90,9 +97,14 @@
                     </div>
 
                     <!--profile edit form, normally hidden-->
-                    <div>
-                        <form ng-show="editingProfile" class="form col-md-12 center-block" style="float: inherit">
+                    <div ng-show="editingProfile">
+                        <h2>Edit your profile</h2>
+                        <form  class="form col-md-12 center-block" style="float: inherit">
                             <!--<input type="hidden" name="userid" value="{{user._id}}">-->
+                            <div class="form-group">
+                                <label>headline</label>
+                                <input ng-model="myprof.headline" name="headline" type="text" class="form-control">
+                            </div>
                             <div class="form-group">
                                 <label>Home Planet</label>
                                 <input name="planet" type="text" class="form-control" ng-model="myprof.planet">
@@ -135,18 +147,17 @@
                             </div>
                             <div class="form-group">
                                 <label>interests</label>
-                                <input ng-model="myprof.interests" style="height: 200px" name="interests" type="text" class="form-control input-lg">
-                            </div>
-                            <div class="form-group">
-                                <label>headline</label>
-                                <input ng-model="myprof.headline" style="height: 200px" name="headline" type="text" class="form-control input-lg">
+                                <!--<input ng-model="myprof.interests" style="height: 200px" name="interests" type="text" class="form-control">-->
+                                <textarea ng-model="myprof.interests" name="interests" rows="5" class="form-control"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>About Me</label>
-                                <input ng-model="myprof.about" style="height: 200px" name="about" type="text" class="form-control input-lg">
+                                <!--<input ng-model="myprof.about" style="height: 200px" name="about" type="text" class="form-control">-->
+                                <textarea ng-model="myprof.about" name="about" rows="5" cols="30" class="form-control"></textarea>
                             </div>
                             <div class="form-group">
-                                <button type="button" class="btn btn-primary btn-lg btn-block">Save</button>
+                                <!--need a handler here!-->
+                                <button ng-click="updateProfile()" type="button" class="btn btn-primary btn-lg btn-block">Save</button>
                             </div>
                         </form>
                     </div>
@@ -154,7 +165,7 @@
 
                 <!--right column-->
                 <!--show other profiles here-->
-                <div class="panel panel-default col-md-6 col-md-offset-1 roundy">
+                <div ng-show="notN00b" class="panel panel-default col-md-6 col-md-offset-1 roundy">
                     <div class="row" style="margin-bottom: 20px">
                         <h2 class="col-md-6">Matches</h2>
                         <div class="col-md-6" style="margin-top: 20px">
@@ -163,7 +174,7 @@
                         </div>
                     </div>
                     <div ng-repeat="prof in profiles | filter:profFilter" ng-click="showProfModal(prof)" class="row" style="cursor: pointer">
-                        <img align="left" class="img-circle col-md-4" src="http://hhhhold.com/120?{{prof.age}}">
+                        <img align="left" class="img-circle col-md-4" src="http://lorempixel.com/120/120/people?{{prof.age}}">
                         <div class="panel panel-default rhole col-md-8" style="min-height: 120px;">
                             <ul>
                                 <li>Age: {{prof.age}}</li>

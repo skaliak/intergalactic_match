@@ -56,6 +56,12 @@ router.get('/upload', function(req, res) {
     res.render('iupload');
 });
 
+router.get('/logout', function(req, res){
+    req.logout();
+    res.render('login', {logout: true});
+});
+
+
 router.get('/profiles', function(req, res) {
     if(req.user != null) {
         Profile.find(function(err, profs) {

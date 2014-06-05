@@ -63,3 +63,9 @@ var processRegister = function (data) {
     console.log(data);
 
 };
+
+function logoutMsg(){
+    var tmsg = 'You have been logged out!';
+    var msg = 'See you again soon'
+    toastr.success(msg, tmsg);
+}

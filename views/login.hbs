@@ -11,6 +11,9 @@
 </head>
 <body>
 
+<!--should put a header/logo here...-->
+
+
 <!--login modal-->
 <div id="loginModal" class="modal fade in" data-show="true" data-backdrop="" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
@@ -88,16 +91,9 @@
 <script src="javascripts/toastr.js"></script>
 <script src="javascripts/loginregister.js"></script>
 <script>
-
-        //probably don't need this
-
-        {{#if error}}
-            //$('#errPopup.modal-content').append('{{error.message}}');
-            //$('#errPopup').modal('show');
-            alert('{{error.message}}');
-        {{/if}}
-        {{#if tryregister}}
-            modaltoggle();
+        {{#if logout}}
+            //show logout message
+            logoutMsg();
         {{/if}}
 </script>
 </body>

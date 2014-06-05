@@ -29,8 +29,8 @@ router.get('/myprofile', function(req, res) {
 
         Profile.findOne({ userid: new ObjectId(req.user._id) }, function(err, prof) {
             if (err) return console.error(err);
-            //console.log('found profile?');
-
+            console.log('returning from myprofile: ');
+            console.log(prof);
             res.send(prof);
         });
 
@@ -58,12 +58,33 @@ router.get('/me', function(req, res) {
 router.post('/updateProfile', function(req, res) {
     if(req.user != null) {
 
+        console.log('updateProfile called');
+
         var prof = req.body;
-        prof.save(function (err, prof) {
-            if (err) return console.error(err);
-            console.log(prof);
-            res.send('ok');
-        });
+        console.log(prof);
+        if(prof._id == null) {
+            console.log('saving new document');
+            prof = new Profile(prof);
+            prof.userid = req.user._id;
+            prof.save(function (err, prof) {
+                if (err) return console.error(err);
+                console.log(prof);
+                res.send('ok');
+            });
+        } else {
+            //update instead of insert
+            console.log('updating existing mongo document');
+
+            var query = {_id: prof._id};
+            delete prof._id;
+
+            Profile.update(query, prof, function (err) {
+                if (err) return console.error(err);
+                console.log('update success');
+                res.send('ok');
+            });
+        }
+
     } else {
         res.send({error: 'not logged in'});
     }
