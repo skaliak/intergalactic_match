@@ -22,8 +22,8 @@ function theController($scope, $http){
     $http.get('/api/myprofile')
         .success(function(data) {
 
-            //console.log('myprof: ');
-            //console.log(data);
+            console.log('myprof: ');
+            console.log(data);
             if(data == "") {
                 console.log('no profile?');
                 //if the user doesn't have a profile (data == null?)
@@ -34,6 +34,10 @@ function theController($scope, $http){
             }
             else {
                 $scope.myprof = data;
+		if($scope.myprof.hasimage) {
+			console.log('hasimage = true')
+		}
+		
             }
         })
         .error(function(data) {
@@ -87,6 +91,8 @@ function theController($scope, $http){
 
                     //need to set "hasImage" in profile and then show image somehow?
                     $scope.myprof.hasimage = true;
+		    toastr.success('uploaded image!');
+		    //$scope.updateProfile();
 
                 })
                 .error(function (data) {

@@ -101,10 +101,15 @@ router.post('/postimage', function(req, res) {
         //console.log(file);
         if (file != null && file.mimetype.match(/image/)) {
             var ext = file.path.split(".")[1];
-            var newPath = __dirname + '\\..\\public\\images\\' + req.user._id + '.' + ext;
+            //var newPath = __dirname + '\\..\\public\\images\\' + req.user._id + '.' + ext;
+            var newPath = 'public/images/' + req.user._id + '.' + ext;
+
             console.log(newPath);
             //console.log(file.path);
-            fs.renameSync(__dirname + '\\..\\' + file.path, newPath);
+            //fs.renameSync(__dirname + '\\..\\' + file.path, newPath);
+            fs.renameSync(file.path, newPath);
+
+
 
             //change user object or profile object to indicate that there's an image
             Profile.findOne({ userid: new ObjectId(req.user._id) }, function(err, prof) {

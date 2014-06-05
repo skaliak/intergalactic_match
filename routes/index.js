@@ -166,7 +166,8 @@ router.post('/postprofile', function(req, res) {
     }
 });
 
-//this doesn't resize the image...
+//this doesn't resize the image..
+//this isn't the production version!  Ignore!
 router.post('/postimage', function(req, res) {
     if(req.user != null) {
 
@@ -174,11 +175,14 @@ router.post('/postimage', function(req, res) {
         var file = req.files.uploadFile;
 
         if (file != null && file.mimetype.match(/image/)) {
+            console.log('file.path: ');
+	    console.log(file.path);
             var ext = file.path.split(".")[1];
-            var newPath = __dirname + '\\..\\public\\images\\' + req.user._id + '.' + ext;
+            //var newPath = __dirname + '\\..\\public\\images\\' + req.user._id + '.' + ext;
+            var newPath = 'public/images/' + req.user._id + '.' + ext;
             console.log(newPath);
-            console.log(file.path);
-            fs.renameSync(__dirname + '\\..\\' + file.path, newPath);
+            //fs.renameSync(__dirname + '\\..\\' + file.path, newPath);
+            fs.renameSync(file.path, newPath);
             res.send('success!');
         } else {
             res.send('upload error');
