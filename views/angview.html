@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="imatch">
+<html lang="en" data-ng-app="imatch">
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
@@ -14,7 +14,7 @@
         <script src="javascripts/angular.js"></script>
         <script src="javascripts/acore.js"></script>
     </head>
-    <body ng-controller="theController">
+    <body data-ng-controller="theController">
 
     <!--navbar here?-->
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -25,7 +25,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a ng-click="showAboutModal()" class="navbar-brand" href="#">About</a>
+                <a data-ng-click="showAboutModal()" class="navbar-brand" href="#">About</a>
             </div>
             <div class="collapse navbar-collapse" style="">
                 <ul class="nav navbar-nav navbar-right">
@@ -56,13 +56,13 @@
             <div class="row">
                 <!--Left column  -->
                 <div class="panel panel-default col-md-5 roundy">
-                    <div ng-show="notN00b">
+                    <div data-ng-show="notN00b">
                         <h2>Your Profile</h2>
                         <table><tr>
                             <td>
                                 <!--<img ng-show="!myprof.hasimage" style="margin-bottom: 20px;" align="left" class="img-circle" src="http://hhhhold.com/120">-->
-                                <img ng-show="!myprof.hasimage" style="margin-bottom: 20px;" align="left" class="img-circle" height="120" src="/images/placeholder.svg">
-                                <img ng-show="myprof.hasimage" style="margin-bottom: 20px;" align="left" class="img-circle" height="120" ng-src="/images/{{me.id}}.jpg">
+                                <img alt="placeholder" data-ng-show="!myprof.hasimage" style="margin-bottom: 20px;" class="img-circle" height="120" src="/images/placeholder.svg">
+                                <img alt="profileImage" data-ng-show="myprof.hasimage" style="margin-bottom: 20px;" class="img-circle" height="120" src="#" data-ng-src="{{myimg}}">
                                 </td><td>
                                 <div class="panel panel-default rhole pull-right profile" style="max-width: 300px; min-width: 180px;">
                                     <ul>
@@ -75,15 +75,15 @@
                                 </div>
                             </td>
                         </tr></table>
-                        <a href ng-click="uploadingImage = !uploadingImage"
+                        <a href="#" data-ng-click="uploadingImage = !uploadingImage"
                            class="col-md-4 btn btn-primary btn-lg">Upload Image</a>
-                        <a href ng-click="editingProfile = !editingProfile"
+                        <a href="#" data-ng-click="editingProfile = !editingProfile"
                            class="col-md-offset-4 col-md-4 btn btn-primary btn-lg">Edit Profile</a>
                     </div>
 
                     <!--file upload form, normally hidden-->
                     <div>
-                        <form ng-show="uploadingImage" ng-model="imgForm" class="form col-md-12 center-block" style="float: inherit">
+                        <form data-ng-show="uploadingImage" data-ng-model="imgForm" class="form col-md-12 center-block" style="float: inherit">
 
                             <input id="fb" name="inboundFile" type="file" style="visibility: hidden;">
 
@@ -91,31 +91,31 @@
                                 <button type="button" onclick="$('#fb').click();" class="btn btn-primary btn-lg btn-block">Choose Image</button>
                             </div>
                             <div class="form-group">
-                                <button type="button" ng-click="uploadImage()" class="btn btn-primary btn-lg btn-block">Upload</button>
+                                <button type="button" data-ng-click="uploadImage()" class="btn btn-primary btn-lg btn-block">Upload</button>
                             </div>
                         </form>
                     </div>
 
                     <!--profile edit form, normally hidden-->
-                    <div ng-show="editingProfile">
+                    <div data-ng-show="editingProfile">
                         <h2>Edit your profile</h2>
                         <form  class="form col-md-12 center-block" style="float: inherit">
                             <!--<input type="hidden" name="userid" value="{{user._id}}">-->
                             <div class="form-group">
                                 <label>headline</label>
-                                <input ng-model="myprof.headline" name="headline" type="text" class="form-control">
+                                <input data-ng-model="myprof.headline" name="headline" type="text" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label>Home Planet</label>
-                                <input name="planet" type="text" class="form-control" ng-model="myprof.planet">
+                                <input name="planet" type="text" class="form-control" data-ng-model="myprof.planet">
                             </div>
                             <div class="form-group">
                                 <label>age</label>
-                                <input name="age" type="number" class="form-control" ng-model="myprof.age">
+                                <input name="age" type="number" class="form-control" data-ng-model="myprof.age">
                             </div>
                             <div class="form-group">
                                 <label>seeking<br>
-                                    <select class="form-control" name="seeking" ng-model="myprof.seeking">
+                                    <select class="form-control" name="seeking" data-ng-model="myprof.seeking">
                                         <option>Neptunian</option>
                                         <option>Earthling</option>
                                         <option>Android</option>
@@ -128,36 +128,36 @@
                                 <label>For</label>
                                 <div class="radio">
                                     <label>
-                                        <input ng-model="myprof.seekingfor" type="radio" name="seekingfor" id="optionsRadios1" value="Planetary Domination">
+                                        <input data-ng-model="myprof.seekingfor" type="radio" name="seekingfor" id="optionsRadios1" value="Planetary Domination">
                                         Planetary Domination
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input ng-model="myprof.seekingfor" type="radio" name="seekingfor" id="optionsRadios2" value="Spawning" checked>
+                                        <input data-ng-model="myprof.seekingfor" type="radio" name="seekingfor" id="optionsRadios2" value="Spawning" checked>
                                         Brood Spawning
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input ng-model="myprof.seekingfor" type="radio" name="seekingfor" id="optionsRadios3" value="Fun">
+                                        <input data-ng-model="myprof.seekingfor" type="radio" name="seekingfor" id="optionsRadios3" value="Fun">
                                         Just Fun!
                                     </label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>interests</label>
-                                <!--<input ng-model="myprof.interests" style="height: 200px" name="interests" type="text" class="form-control">-->
-                                <textarea ng-model="myprof.interests" name="interests" rows="5" class="form-control"></textarea>
+                                <!--<input data-ng-model="myprof.interests" style="height: 200px" name="interests" type="text" class="form-control">-->
+                                <textarea data-ng-model="myprof.interests" name="interests" rows="5" class="form-control"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>About Me</label>
-                                <!--<input ng-model="myprof.about" style="height: 200px" name="about" type="text" class="form-control">-->
-                                <textarea ng-model="myprof.about" name="about" rows="5" cols="30" class="form-control"></textarea>
+                                <!--<input data-ng-model="myprof.about" style="height: 200px" name="about" type="text" class="form-control">-->
+                                <textarea data-ng-model="myprof.about" name="about" rows="5" cols="30" class="form-control"></textarea>
                             </div>
                             <div class="form-group">
                                 <!--need a handler here!-->
-                                <button ng-click="updateProfile()" type="button" class="btn btn-primary btn-lg btn-block">Save</button>
+                                <button data-ng-click="updateProfile()" type="button" class="btn btn-primary btn-lg btn-block">Save</button>
                             </div>
                         </form>
                     </div>
@@ -165,27 +165,27 @@
 
                 <!--right column-->
                 <!--show other profiles here-->
-                <div ng-show="notN00b" class="panel panel-default col-md-6 col-md-offset-1 roundy">
+                <div data-ng-show="notN00b" class="panel panel-default col-md-6 col-md-offset-1 roundy">
                     <div class="row" style="margin-bottom: 20px">
                         <h2 class="col-md-6">Matches</h2>
                         <div class="col-md-6" style="margin-top: 20px">
                             <label>Filter:</label>
-                            <input type="text" ng-model="profFilter"/>
+                            <input type="text" data-ng-model="profFilter"/>
                         </div>
                     </div>
-                    <div ng-repeat="prof in profiles | filter:profFilter" ng-click="showProfModal(prof)" class="row" style="cursor: pointer">
-                        <img align="left" class="img-circle col-md-4" src="http://lorempixel.com/120/120/people?{{prof.age}}">
+                    <div data-ng-repeat="prof in profiles | filter:profFilter" data-ng-click="showProfModal(prof)" class="row" style="cursor: pointer">
+                        <img alt="profile image placeholder" class="img-circle col-md-4" src="#" data-ng-src="http://lorempixel.com/120/120/people?{{prof.age}}">
                         <div class="panel panel-default rhole col-md-8 profile" style="min-height: 120px;">
                             <ul>
                                 <li>Age: {{prof.age}}</li>
                                 <li>From: {{prof.planet}}</li>
                                 <li>Seeking a {{prof.seeking}} for {{prof.seekingfor}}</li>
-                                <li ng-class="{alienprofile : prof.planet == 'Mars' || prof.planet == 'Nebulon'}">
+                                <li data-ng-class="{alienprofile : prof.planet == 'Mars' || prof.planet == 'Nebulon'}">
                                     About me: {{prof.about}}</li>
                                 <li>Interests: {{prof.interests}}</li>
                             </ul>
                         </div>
-                    </div><!--ng-repeat-->
+                    </div><!--data-ng-repeat-->
 
                 </div>
 

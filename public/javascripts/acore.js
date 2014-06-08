@@ -48,6 +48,7 @@ function theController($scope, $http){
         .success(function(data) {
             $scope.me = data;
             //console.log(data);
+            $scope.myimg = '/images/' + $scope.me.id + '.jpg';
         })
         .error(function(data) {
             console.log('Error: ' + data);
