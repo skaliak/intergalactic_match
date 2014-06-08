@@ -1,13 +1,13 @@
 /**
  * Created by Peter on 5/28/2014.
  */
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
-    host     : 'ec2-54-198-74-1.compute-1.amazonaws.com',
-    user     : 'root',
-    password : 'Kr3bnf67!',
-    database : 'njs'
-});
+//var mysql      = require('mysql');
+//var connection = mysql.createConnection({
+//    host     : 'ec2-54-198-74-1.compute-1.amazonaws.com',
+//    user     : 'root',
+//    password : '',
+//    database : 'njs'
+//});
 
 
 var mongoose = require('mongoose');
@@ -35,5 +35,5 @@ mongoose.connect('mongodb://localhost/test');
 //});
 
 //module.exports = connection;
-exports.mysql = connection;
+//exports.mysql = connection;
 exports.mongodb = mongoose;
