@@ -1,5 +1,5 @@
-Intergalactic Match
-===================
+[Intergalactic Match](https://github.com/skaliak/intergalactic_match)
+=====================================================================
 
 a dating website for earthlings and aliens
 ------------------------------------------
